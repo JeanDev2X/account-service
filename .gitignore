@@ -23,10 +23,6 @@ Thumbs.db
 *.war
 *.ear
 
-# Ignore application configuration files
-application.properties
-application.yml
-
 # Ignore compiled classes and package files
 *.class
 
