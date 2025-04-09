@@ -3,7 +3,9 @@ package com.bank.account.service.entity;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -26,4 +28,8 @@ public class Account {
     private AccountType type;
     private List<String> holders;//titulares
     private List<String> signers;//firmantes
+    
+    @NotNull
+    @DecimalMin(value = "0.00", inclusive = true)
+    private BigDecimal initialAmount;
 }
