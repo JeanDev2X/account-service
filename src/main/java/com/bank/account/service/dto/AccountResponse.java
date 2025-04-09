@@ -12,6 +12,7 @@ public class AccountResponse {
 	private String id;
 	private String accountNumber;
     private String documentNumber;
-    private BigDecimal balance;
     private AccountType type;
+    private BigDecimal balance;
+    private BigDecimal initialAmount;
 }

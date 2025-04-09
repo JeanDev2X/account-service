@@ -1,8 +1,11 @@
 package com.bank.account.service.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.bank.account.service.dto.AccountRequest;
 import com.bank.account.service.dto.AccountResponse;
 import com.bank.account.service.entity.Account;
 import com.bank.account.service.service.AccountService;
@@ -16,10 +19,31 @@ public class AccountController {
 	@Autowired
     private AccountService service;
 
-    @PostMapping
-    public Mono<Account> create(@RequestBody Account account) {
-        return service.createAccount(account);
-    }
+	@PostMapping
+	public Mono<AccountResponse> create(@Valid @RequestBody AccountRequest request) {
+	    Account account = new Account();
+	    account.setAccountNumber(request.getAccountNumber());
+	    account.setDocumentNumber(request.getDocumentNumber());
+	    account.setType(request.getType());
+	    account.setBalance(request.getBalance());
+	    account.setInitialAmount(request.getInitialAmount());
+	    account.setHolders(request.getHolders());
+	    account.setSigners(request.getSigners());
+
+	    return service.createAccount(account)
+	            .map(this::toResponse);
+	}
+	
+	private AccountResponse toResponse(Account account) {
+	    return AccountResponse.builder()
+	            .id(account.getId())
+	            .accountNumber(account.getAccountNumber())
+	            .documentNumber(account.getDocumentNumber())
+	            .type(account.getType())
+	            .balance(account.getBalance())
+	            .initialAmount(account.getInitialAmount())
+	            .build();
+	}
 
     @GetMapping
     public Flux<Account> getAll() {

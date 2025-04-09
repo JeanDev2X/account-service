@@ -1,5 +1,7 @@
 package com.bank.account.service.service.impl;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,15 @@ public class AccountServiceImpl implements AccountService{
 
     @Override
     public Mono<Account> createAccount(Account account) {
+    	// Validar si el monto de apertura es mayor o igual a cero
+    	if (account.getInitialAmount() == null || account.getInitialAmount().compareTo(BigDecimal.ZERO) < 0) {
+            return Mono.error(new IllegalArgumentException("The opening amount must be zero or greater"));
+        }
+    	
+    	if (account.getBalance() == null || account.getBalance().compareTo(BigDecimal.ZERO) < 0) {
+            return Mono.error(new IllegalArgumentException("The opening amount must be zero or greater"));
+        } 
+    	
         return validateCustomerByDocumentNumber(account.getDocumentNumber())
                 .flatMap(customer -> repository.findByDocumentNumber(account.getDocumentNumber())
                         .collectList()
@@ -46,6 +57,9 @@ public class AccountServiceImpl implements AccountService{
                                     return Mono.error(new IllegalStateException("A business customer cannot have savings or fixed-term accounts"));
                                 }
                             }
+                            
+                                             
+                            
                             return repository.save(account);
                         }));
     }
