@@ -5,6 +5,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import com.bank.account.service.dto.AccountBalanceResponse;
 import com.bank.account.service.dto.AccountRequest;
 import com.bank.account.service.dto.AccountResponse;
 import com.bank.account.service.entity.Account;
@@ -75,6 +76,11 @@ public class AccountController {
     @GetMapping("/by-account-number/{accountNumber}")
     public Mono<Account> getByAccountNumber(@PathVariable String accountNumber) {
         return service.getByAccountNumber(accountNumber);
+    }
+    
+    @GetMapping("/document/{documentNumber}")
+    public Flux<AccountBalanceResponse> getAccountsByDocument(@PathVariable String documentNumber) {
+        return service.getAccountsByDocumentNumber(documentNumber);
     }
     
 }
