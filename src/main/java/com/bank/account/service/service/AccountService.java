@@ -1,5 +1,6 @@
 package com.bank.account.service.service;
 
+import com.bank.account.service.dto.AccountBalanceResponse;
 import com.bank.account.service.entity.Account;
 
 import reactor.core.publisher.Flux;
@@ -12,4 +13,5 @@ public interface AccountService {
     Mono<Account> updateAccount(String id, Account account);
     Mono<Void> deleteAccount(String id);
     Mono<Account> getByAccountNumber(String accountNumber);
+    Flux<AccountBalanceResponse> getAccountsByDocumentNumber(String documentNumber);
 }
