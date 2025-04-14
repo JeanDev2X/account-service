@@ -1,4 +1,4 @@
-package com.bank.account.service.exception;
+package bank.account.exception;
 
 public class ResourceNotFoundException extends RuntimeException {
 	public ResourceNotFoundException(String message) {

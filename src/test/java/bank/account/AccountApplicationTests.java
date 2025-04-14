@@ -1,4 +1,4 @@
-package spring.boot.webflu.ms.cuenta.banco.app;
+package bank.account;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,7 +16,7 @@ import reactor.core.publisher.Mono;
 @AutoConfigureWebTestClient
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
-class SpringBootWebfluMsBancosApplicationTests {
+class AccountApplicationTests {
 	
 //	@Autowired
 //	private ProductBankService productoService;

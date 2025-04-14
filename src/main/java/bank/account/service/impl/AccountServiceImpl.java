@@ -1,4 +1,4 @@
-package com.bank.account.service.service.impl;
+package bank.account.service.impl;
 
 import java.math.BigDecimal;
 
@@ -8,13 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.server.ResponseStatusException;
 
-import com.bank.account.service.dto.AccountBalanceResponse;
-import com.bank.account.service.dto.CustomerResponse;
-import com.bank.account.service.entity.Account;
-import com.bank.account.service.entity.AccountType;
-import com.bank.account.service.repository.AccountRepository;
-import com.bank.account.service.service.AccountService;
-
+import bank.account.dto.AccountBalanceResponse;
+import bank.account.dto.CustomerResponse;
+import bank.account.entity.Account;
+import bank.account.entity.AccountType;
+import bank.account.repository.AccountRepository;
+import bank.account.service.AccountService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

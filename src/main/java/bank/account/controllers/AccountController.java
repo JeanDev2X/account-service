@@ -1,16 +1,15 @@
-package com.bank.account.service.controllers;
+package bank.account.controllers;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.bank.account.service.dto.AccountBalanceResponse;
-import com.bank.account.service.dto.AccountRequest;
-import com.bank.account.service.dto.AccountResponse;
-import com.bank.account.service.entity.Account;
-import com.bank.account.service.service.AccountService;
-
+import bank.account.dto.AccountBalanceResponse;
+import bank.account.dto.AccountRequest;
+import bank.account.dto.AccountResponse;
+import bank.account.entity.Account;
+import bank.account.service.AccountService;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

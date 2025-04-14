@@ -1,10 +1,10 @@
-package com.bank.account.service.dto;
+package bank.account.dto;
 
 import lombok.Builder;
 import lombok.Data;
 import java.math.BigDecimal;
 
-import com.bank.account.service.entity.AccountType;
+import bank.account.entity.AccountType;
 
 @Data
 @Builder
