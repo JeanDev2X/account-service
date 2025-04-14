@@ -1,4 +1,4 @@
-package com.bank.account.service.entity;
+package bank.account.entity;
 
 public enum AccountType {
 	SAVINGS, //ahorros

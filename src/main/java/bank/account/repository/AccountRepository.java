@@ -1,9 +1,8 @@
-package com.bank.account.service.repository;
+package bank.account.repository;
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
-import com.bank.account.service.entity.Account;
-
+import bank.account.entity.Account;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 

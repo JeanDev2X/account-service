@@ -1,4 +1,4 @@
-package com.bank.account.service.dto;
+package bank.account.dto;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -7,8 +7,7 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.bank.account.service.entity.AccountType;
-
+import bank.account.entity.AccountType;
 import lombok.Data;
 
 @Data

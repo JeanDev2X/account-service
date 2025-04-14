@@ -1,8 +1,7 @@
-package com.bank.account.service.service;
+package bank.account.service;
 
-import com.bank.account.service.dto.AccountBalanceResponse;
-import com.bank.account.service.entity.Account;
-
+import bank.account.dto.AccountBalanceResponse;
+import bank.account.entity.Account;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
