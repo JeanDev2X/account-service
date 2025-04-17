@@ -132,6 +132,9 @@ public class AccountServiceImpl implements AccountService{
                         .accountNumber(account.getAccountNumber())
                         .documentNumber(account.getDocumentNumber())
                         .balance(account.getBalance())
+                        .type(account.getType())
+                        .holders(account.getHolders())
+                        .signers(account.getSigners())
                         .build());
     }
 
