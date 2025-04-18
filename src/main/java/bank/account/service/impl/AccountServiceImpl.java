@@ -76,7 +76,13 @@ public class AccountServiceImpl implements AccountService{
                                 return Mono.error(new IllegalArgumentException("The opening amount must be zero or greater"));
                             }
 
-                            return repository.save(account);
+                            return hasOverdueCredits(account.getDocumentNumber())
+                            	    .flatMap(hasOverdue -> {
+                            	        if (hasOverdue) {
+                            	            return Mono.error(new IllegalStateException("Customer has overdue credits and cannot open new products."));
+                            	        }
+                            	        return repository.save(account);
+                            	    });
                         }));
     }
 
@@ -91,6 +97,23 @@ public class AccountServiceImpl implements AccountService{
                     }
                     return Mono.just(customer);
                 });
+    }
+    
+    private Mono<Boolean> hasOverdueCredits(String documentNumber) {
+        Mono<Boolean> overdueLoans = customerWebClient.get()
+                .uri("/credits/has-overdue-loans/{documentNumber}", documentNumber)
+                .retrieve()
+                .bodyToMono(Boolean.class)
+                .onErrorReturn(false); // fallback en caso de error
+
+        Mono<Boolean> overdueCreditCards = customerWebClient.get()
+                .uri("/credits/has-overdue-credit-cards/{documentNumber}", documentNumber)
+                .retrieve()
+                .bodyToMono(Boolean.class)
+                .onErrorReturn(false); // fallback en caso de error
+
+        return Mono.zip(overdueLoans, overdueCreditCards)
+                .map(tuple -> tuple.getT1() || tuple.getT2()); // true si tiene deuda vencida en cualquiera
     }
 
     @Override
