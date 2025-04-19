@@ -1,5 +1,7 @@
 package bank.account.dto;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -10,16 +12,16 @@ import lombok.Data;
 @Builder
 public class DebitCardDTO {
 	private String cardNumber;
-    private String accountNumber;
+	private List<String> accountNumbers;
     private String customerDocumentNumber;
 
     @JsonCreator
     public DebitCardDTO(
             @JsonProperty("cardNumber") String cardNumber,
-            @JsonProperty("accountNumber") String accountNumber,
+            @JsonProperty("accountNumber") List<String> accountNumber,
             @JsonProperty("customerDocumentNumber") String customerDocumentNumber) {
         this.cardNumber = cardNumber;
-        this.accountNumber = accountNumber;
+        this.accountNumbers = accountNumbers;
         this.customerDocumentNumber = customerDocumentNumber;
     }
 }
